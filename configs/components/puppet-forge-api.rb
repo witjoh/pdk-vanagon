@@ -12,7 +12,8 @@ component "puppet-forge-api" do |pkg, settings, platform|
 
   pkg.build do
     # Cache specific versions of the puppet gem
-    gem_source = "https://artifactory.delivery.puppetlabs.net/artifactory/api/gems/rubygems"
+    gem_source = "https://rubygems.org"
+    #gem_source = "https://artifactory.delivery.puppetlabs.net/artifactory/api/gems/rubygems"
     puppet_cachedir = File.join(settings[:privatedir], 'puppet', 'ruby')
 
     gem_bins = {

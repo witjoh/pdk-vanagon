@@ -14,8 +14,10 @@ component 'pdk-runtime' do |pkg, settings, platform|
     runtime_path = pkg.get_version
   end
 
-  pkg.sha1sum "http://builds.delivery.puppetlabs.net/puppet-runtime/#{runtime_path}/artifacts/#{pkg.get_name}-#{pkg.get_version}.#{platform.name}.tar.gz.sha1"
-  pkg.url "http://builds.delivery.puppetlabs.net/puppet-runtime/#{runtime_path}/artifacts/#{pkg.get_name}-#{pkg.get_version}.#{platform.name}.tar.gz"
+  pkg.sha1sum "#{settings[:pdk_runtime_location]}/#{pkg.get_name}-#{pkg.get_version}.#{platform.name}.tar.gz.sha1"
+  pkg.url "#{settings[:pdk_runtime_location]}/#{pkg.get_name}-#{pkg.get_version}.#{platform.name}.tar.gz"
+  #pkg.sha1sum "http://builds.delivery.puppetlabs.net/puppet-runtime/#{runtime_path}/artifacts/#{pkg.get_name}-#{pkg.get_version}.#{platform.name}.tar.gz.sha1"
+  #pkg.url "http://builds.delivery.puppetlabs.net/puppet-runtime/#{runtime_path}/artifacts/#{pkg.get_name}-#{pkg.get_version}.#{platform.name}.tar.gz"
 
   pkg.install_only true
 

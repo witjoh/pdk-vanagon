@@ -2,7 +2,9 @@ project "pdk" do |proj|
   # Inherit a bunch of shared settings from pdk-runtime config
   runtime_config = JSON.parse(File.read(File.join(__dir__, '..', 'components', 'puppet-runtime.json')))
   proj.setting(:pdk_runtime_version, runtime_config["version"])
-  proj.inherit_settings 'pdk-runtime', 'git://github.com/puppetlabs/puppet-runtime', proj.pdk_runtime_version
+  proj.setting(:pdk_runtime_location, runtime_config["location"])
+
+  proj.inherit_settings 'pdk-runtime', 'git://git@github.com:witjoh/puppet-runtime.git', proj.pdk_runtime_version
 
   proj.description "Puppet Development Kit"
   proj.version_from_git
@@ -49,7 +51,8 @@ project "pdk" do |proj|
 
   # Internal rubygems mirror
   # TODO: Migrate more components to use this
-  proj.setting(:rubygems_url, "#{proj.artifactory_url}/rubygems/gems")
+  #proj.setting(:rubygems_url, "#{proj.artifactory_url}/rubygems/gems")
+  proj.setting(:rubygems_url, "https://rubygems.org/downloads")
 
   proj.setting(:bundler_version, "2.1.4")
   proj.setting(:byebug_version, {
@@ -206,5 +209,5 @@ project "pdk" do |proj|
   # Something like https://www.openssl.org/source/openssl-1.0.0r.tar.gz gets
   # rewritten as
   # https://artifactory.delivery.puppetlabs.net/artifactory/generic/buildsources/openssl-1.0.0r.tar.gz
-  proj.register_rewrite_rule 'http', proj.buildsources_url
+  #proj.register_rewrite_rule 'http', proj.buildsources_url
 end
