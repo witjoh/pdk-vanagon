@@ -4,7 +4,7 @@ project "pdk" do |proj|
   proj.setting(:pdk_runtime_version, runtime_config["version"])
   proj.setting(:pdk_runtime_location, runtime_config["location"])
 
-  proj.inherit_settings 'pdk-runtime', 'git://git@github.com:witjoh/puppet-runtime.git', proj.pdk_runtime_version
+  proj.inherit_settings 'pdk-runtime', 'https://github.com/witjoh/puppet-runtime.git', proj.pdk_runtime_version
 
   proj.description "Puppet Development Kit"
   proj.version_from_git
